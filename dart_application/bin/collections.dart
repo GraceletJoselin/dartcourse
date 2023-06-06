@@ -234,6 +234,49 @@ void main(List<String> args) {
   } catch (e) {
     print(e);
   }
+
+  arrayw();
+  arrayr();
+  dicw();
+  dicr();
+
+  final na = 'lovelin';
+  var a4 = {for (final char in na.split('')) 'lin'.contains(char) ? null : char}
+    ..removeAll([null])
+    ..cast<String>();
+  print(a4);
+
+  final a5 = Iterable.generate(20);
+  //2 ways
+  final e = [
+    for (final number in a5)
+      if (number % 2 == 0) number
+  ];
+  final ef = a5.where(
+    (number) => number % 2 == 0,
+  );
+  final o = [
+    for (final number in a5)
+      if (number % 2 != 0) number
+  ];
+  final of = a5.where(
+    (number) => number % 2 != 0,
+  );
+  print(a5);
+  print(e);
+  print(ef);
+  print(o);
+  print(of);
+
+  final n = [
+    'Frank',
+    'Grace',
+    'Zack',
+  ];
+  final nl = {
+    for (final name in n) name: name.length,
+  };
+  print(nl);
 }
 
 String getName(int i) {
@@ -249,6 +292,52 @@ class Personwohashcode {
     required this.name,
     required this.age,
   });
+}
+
+void arrayw() {
+  final names1 = ['a1', 'b1', 'c1'];
+  final names2 = ['a2', 'b2', 'c2'];
+  //not copying but assigning the variable and memory position - not right
+  final a = names1;
+  a.addAll(names2);
+  print(names1);
+  print(names2);
+  print(a);
+}
+
+void arrayr() {
+  final names1 = ['a1', 'b1', 'c1'];
+  final names2 = ['a2', 'b2', 'c2'];
+  final a = [...names1, ...names2];
+  print(names1);
+  print(names2);
+  print(a);
+  //set
+  final b = {...names1}..addAll(names2);
+  print(b);
+}
+
+void dicw() {
+  const info = {
+    'name': 'zack',
+    'age': 2,
+  };
+  try {
+    final result = info;
+    result.addAll({'weight': 15});
+  } catch (e) {
+    print(e);
+  }
+}
+
+void dicr() {
+  const info = {
+    'name': 'zack',
+    'age': 2,
+  };
+  //correct way
+  final result = {...info}..addAll({'weight': 15});
+  print(result);
 }
 
 class Person {
